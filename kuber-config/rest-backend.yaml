@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rest-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rest-backend
+  template:
+    metadata:
+      labels:
+        app: rest-backend
+    spec:
+      containers:
+      - name: rest-backend
+        image: gcr.io/tpp-devop-internship/rest-backend:v1.0
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5000
+        env:
+        - name: DB
+          valueFrom:
+            secretKeyRef:
+              name: project-secret
+              key: DB
+        - name: jwtPrivateKey
+          valueFrom:
+            secretKeyRef:
+              name: project-secret
+              key: jwtPrivateKey
+        - name: productAPI
+          valueFrom:
+            configMapKeyRef:
+              name: rest-backend-configmap
+              key: api-product
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rest-service
+spec:
+  selector:
+    app: rest-backend
+  ports:
+  - port: 80
+    targetPort: 5000
+
+

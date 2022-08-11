@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-configmap
+data:
+  api-rest: http://rest-service:80
+  api-product: http://product-service:80

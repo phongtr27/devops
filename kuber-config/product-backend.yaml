@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-backend
+  labels:
+    app: product-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: product-backend
+  template:
+    metadata:
+      labels:
+        app: product-backend
+    spec:
+      containers:
+      - name: product-backend
+        image: gcr.io/tpp-devop-internship/product-backend:v1.0
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5001
+        env:
+        - name: DB
+          valueFrom:
+            secretKeyRef:
+              name: project-secret
+              key: DB
+        - name: jwtPrivateKey
+          valueFrom:
+            secretKeyRef:
+              name: project-secret
+              key: jwtPrivateKey
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: product-service
+spec:
+  selector:
+    app: product-backend
+  ports:
+  - port: 80
+    targetPort: 5001
+
+

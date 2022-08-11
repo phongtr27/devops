@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: gcr.io/tpp-devop-internship/frontend:v2.0
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
+          env:
+            - name: REACT_APP_API_PRODUCT
+              valueFrom:
+                configMapKeyRef:
+                  name: frontend-configmap
+                  key: api-product
+            - name: REACT_APP_API_REST
+              valueFrom:
+                configMapKeyRef:
+                  name: frontend-configmap
+                  key: api-rest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: frontend
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+status:
+  loadBalancer:
+    ingress:
+      - ip: 203.0.113.10
