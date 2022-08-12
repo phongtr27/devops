@@ -7,13 +7,14 @@ import { ERROR, SHOP } from "../../constants/routes";
 import { CheckoutContainer } from "../../containers";
 import { toast } from "react-toastify";
 import { Fade } from "react-awesome-reveal";
+import Config from "../../config.json"
 
 const Checkout = () => {
 	const navigate = useNavigate();
 	const { user } = useContext(UserContext);
 	const { cart, setCart } = useContext(CartContext);
 	const { data: products, error } = useFetch(
-		process.env.REACT_APP_API_PRODUCT
+		Config.REACT_APP_API_PRODUCT
 	);
 	const [name, setName] = useState(user?.name || "");
 	const [phone, setPhone] = useState("");
@@ -65,7 +66,7 @@ const Checkout = () => {
 
 		try {
 			const response = await fetch(
-				`${process.env.REACT_APP_API_REST}/api/order`,
+				`${Config.REACT_APP_API_REST}/api/order`,
 				{
 					method: "POST",
 					body: JSON.stringify(data),

@@ -1,4 +1,5 @@
 import { Form, Table, Loading } from "../../components";
+import Config from "../../config.json"
 
 const OrderForm = ({ order, setOrder, cart, isLoading, onSubmit }) => {
 	return (
@@ -125,7 +126,7 @@ const OrderForm = ({ order, setOrder, cart, isLoading, onSubmit }) => {
 									<Table.Image
 										src={
 											product.image
-												? `${process.env.REACT_APP_API_PRODUCT}/public${product.image}`
+												? `${Config.REACT_APP_API_PRODUCT}/public${product.image}`
 												: `images/misc/alt.jpeg`
 										}
 										alt={product.name}

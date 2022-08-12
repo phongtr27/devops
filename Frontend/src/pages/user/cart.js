@@ -7,13 +7,12 @@ import { deleteFromCart } from "../../helpers/deleteFromCart";
 import { CHECKOUT, ERROR, SHOP } from "../../constants/routes";
 import { CartTable } from "../../containers";
 import { Fade } from "react-awesome-reveal";
+import Config from "../../config.json";
 
 const Cart = () => {
 	const navigate = useNavigate();
 	const { cart, setCart } = useContext(CartContext);
-	const { data: products, error } = useFetch(
-		process.env.REACT_APP_API_PRODUCT
-	);
+	const { data: products, error } = useFetch(Config.REACT_APP_API_PRODUCT);
 
 	const { width } = useWidth();
 

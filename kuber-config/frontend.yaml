@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: gcr.io/tpp-devop-internship/frontend:v2.0
+          image: gcr.io/tpp-devop-internship/frontend:v7.0
           resources:
             limits:
               memory: "128Mi"

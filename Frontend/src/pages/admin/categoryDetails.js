@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { ADMIN_CATEGORY } from "../../constants/routes";
 import { CategoryForm } from "../../containers";
 import { toast } from "react-toastify";
+import Config from "../../config.json";
 
 const CategoryDetails = () => {
 	const { id } = useParams();
@@ -21,7 +22,7 @@ const CategoryDetails = () => {
 
 	useEffect(() => {
 		if (id !== "new") {
-			fetch(`${process.env.REACT_APP_API_REST}/api/category/${id}`)
+			fetch(`${Config.REACT_APP_API_REST}/api/category/${id}`)
 				.then((response) => {
 					if (response.ok) {
 						return response.json();
@@ -64,7 +65,7 @@ const CategoryDetails = () => {
 
 		try {
 			const response = await fetch(
-				`${process.env.REACT_APP_API_REST}/api/category/${
+				`${Config.REACT_APP_API_REST}/api/category/${
 					id === "new" ? "" : id
 				}`,
 				{

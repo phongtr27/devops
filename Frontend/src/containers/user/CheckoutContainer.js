@@ -1,4 +1,5 @@
 import { Box, Form } from "../../components";
+import Config from "../../config.json";
 
 const CheckoutContainer = ({
 	cart,
@@ -77,7 +78,7 @@ const CheckoutContainer = ({
 						<Box.Image
 							src={
 								product.image
-									? `${process.env.REACT_APP_API_PRODUCT}/public${product.image}`
+									? `${Config.REACT_APP_API_PRODUCT}/public${product.image}`
 									: `images/misc/alt.jpeg`
 							}
 							alt={product.name}

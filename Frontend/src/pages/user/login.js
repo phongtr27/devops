@@ -5,6 +5,7 @@ import { Form } from "../../components";
 import { UserContext } from "../../context/user";
 import jwt_decode from "jwt-decode";
 import { toast } from "react-toastify";
+import Config from "../../config.json";
 
 const LogIn = () => {
 	const navigate = useNavigate();
@@ -29,7 +30,7 @@ const LogIn = () => {
 
 		try {
 			const response = await fetch(
-				`${process.env.REACT_APP_API_REST}/api/auth`,
+				`${Config.REACT_APP_API_REST}/api/auth`,
 				{
 					method: "POST",
 					headers: {

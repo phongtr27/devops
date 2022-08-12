@@ -1,5 +1,6 @@
 import { Table, Card } from "../../components";
 import { addQuantity, subtractQuantity } from "../../helpers/updateCart";
+import Config from "../../config.json"
 
 const CartTable = ({
 	cart,
@@ -34,7 +35,7 @@ const CartTable = ({
 											<Table.Image
 												src={
 													product.image
-														? `${process.env.REACT_APP_API_PRODUCT}/public${product.image}`
+														? `${Config.REACT_APP_API_PRODUCT}/public${product.image}`
 														: `images/misc/alt.jpeg`
 												}
 												alt={product.name}
@@ -158,7 +159,7 @@ const CartTable = ({
 										<Table.Image
 											src={
 												product.image
-													? `${process.env.REACT_APP_API_PRODUCT}/public${product.image}`
+													? `${Config.REACT_APP_API_PRODUCT}/public${product.image}`
 													: `images/misc/alt.jpeg`
 											}
 											alt={product.name}

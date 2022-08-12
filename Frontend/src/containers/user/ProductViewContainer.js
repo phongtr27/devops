@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import Config from "../../config.json";
 
 const ProductViewContainer = ({
 	product,
@@ -115,7 +116,7 @@ const ProductViewContainer = ({
 										(image, index) => (
 											<ProductView.Image
 												key={index}
-												src={`${process.env.REACT_APP_API_PRODUCT}/public${image}`}
+												src={`${Config.REACT_APP_API_PRODUCT}/public${image}`}
 											/>
 										)
 									)}
@@ -135,7 +136,7 @@ const ProductViewContainer = ({
 						{product?.options.map((option, index) => (
 							<ProductView.ImagePreview
 								key={index}
-								src={`${process.env.REACT_APP_API_PRODUCT}/public${option.img[0]}`}
+								src={`${Config.REACT_APP_API_PRODUCT}/public${option.img[0]}`}
 								onClick={() => onOptionChange(index)}
 								active={optionIndex === index}
 							/>
@@ -188,7 +189,7 @@ const ProductViewContainer = ({
 									(image, index) => (
 										<ProductView.Image
 											key={index}
-											src={`${process.env.REACT_APP_API_PRODUCT}/public${image}`}
+											src={`${Config.REACT_APP_API_PRODUCT}/public${image}`}
 										/>
 									)
 								)}

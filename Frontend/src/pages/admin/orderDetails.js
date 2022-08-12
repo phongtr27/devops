@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { ADMIN_ORDER } from "../../constants/routes";
 import useFetch from "../../hooks/useFetch";
 import { toast } from "react-toastify";
+import Config from "../../config.json";
 
 const OrderDetails = () => {
 	const { id } = useParams();
@@ -13,10 +14,10 @@ const OrderDetails = () => {
 		setData: setOrder,
 		error: err1,
 		isLoading,
-	} = useFetch(`${process.env.REACT_APP_API_REST}/api/order/${id}`);
+	} = useFetch(`${Config.REACT_APP_API_REST}/api/order/${id}`);
 
 	const { data: products, error: err2 } = useFetch(
-		process.env.REACT_APP_API_PRODUCT
+		Config.REACT_APP_API_PRODUCT
 	);
 
 	const cartToRender = [];
@@ -39,7 +40,7 @@ const OrderDetails = () => {
 
 		try {
 			const response = await fetch(
-				`${process.env.REACT_APP_API_REST}/api/order/${id}`,
+				`${Config.REACT_APP_API_REST}/api/order/${id}`,
 				{
 					method: "PATCH",
 					body: JSON.stringify({ status: order.status }),

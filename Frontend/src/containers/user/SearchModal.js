@@ -3,12 +3,13 @@ import useFetch from "../../hooks/useFetch";
 import { Modal, Form } from "../../components";
 import { SHOP } from "../../constants/routes";
 import { useLocation } from "react-router-dom";
+import Config from "../../config.json";
 
 const SearchModal = ({ showSearchModal, setShowSearchModal, modalRef }) => {
 	const { pathname } = useLocation();
 	const [searchTerm, setSearchTerm] = useState("");
 	const [filteredProducts, setFilteredProducts] = useState([]);
-	let { data: products } = useFetch(process.env.REACT_APP_API_PRODUCT);
+	let { data: products } = useFetch(Config.REACT_APP_API_PRODUCT);
 
 	useEffect(() => {
 		setSearchTerm("");

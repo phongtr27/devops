@@ -1,6 +1,7 @@
 import React from "react";
 import { Loading, Table } from "../../components";
 import { DeleteConfirmation } from "../../containers";
+import Config from "../../config.json";
 
 const CategoryTable = ({
 	isLoading,
@@ -41,7 +42,7 @@ const CategoryTable = ({
 
 								<Table.Data>
 									<Table.Image
-										src={`${process.env.REACT_APP_API_REST}/public${category.img}`}
+										src={`${Config.REACT_APP_API_REST}/public${category.img}`}
 										alt={category.name}
 									/>
 								</Table.Data>

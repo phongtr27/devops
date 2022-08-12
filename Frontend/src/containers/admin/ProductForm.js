@@ -1,4 +1,5 @@
 import { Form, Loading, Table } from "../../components";
+import Config from "../../config.json"
 
 const ProductForm = ({
 	id,
@@ -164,7 +165,7 @@ const ProductForm = ({
 											{option.img.map((image, index) => (
 												<Form.Image
 													key={index}
-													src={`${process.env.REACT_APP_API_PRODUCT}/public${image}`}
+													src={`${Config.REACT_APP_API_PRODUCT}/public${image}`}
 													alt="product image"
 												/>
 											))}

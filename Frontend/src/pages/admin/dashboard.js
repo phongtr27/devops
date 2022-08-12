@@ -5,6 +5,7 @@ import { ProductTable, OrderTable } from "../../containers";
 import Pagination from "react-js-pagination";
 import { toast } from "react-toastify";
 import { useMemo } from "react";
+import Config from "../../config.json";
 
 let PageSize = 5;
 
@@ -14,7 +15,7 @@ const Dashboard = () => {
 		setData: setProducts,
 		error: err1,
 		isLoading: isLoading1,
-	} = useFetch(`${process.env.REACT_APP_API_PRODUCT}/topseller`);
+	} = useFetch(`${Config.REACT_APP_API_PRODUCT}/topseller`);
 
 	const [activePage, setActivePage] = useState(1);
 
@@ -30,7 +31,7 @@ const Dashboard = () => {
 		data: orders,
 		error: err2,
 		isLoading: isLoading2,
-	} = useFetch(`${process.env.REACT_APP_API_REST}/api/order/pending`);
+	} = useFetch(`${Config.REACT_APP_API_REST}/api/order/pending`);
 
 	const handlePageChange = (pageNumber) => {
 		setActivePage(pageNumber);
@@ -38,12 +39,15 @@ const Dashboard = () => {
 
 	const handleDelete = async (id) => {
 		try {
-			const response = await fetch(`${process.env.REACT_APP_API_PRODUCT}/${id}`, {
-				method: "DELETE",
-				headers: {
-					"x-auth-token": localStorage.getItem("token"),
-				},
-			});
+			const response = await fetch(
+				`${Config.REACT_APP_API_PRODUCT}/${id}`,
+				{
+					method: "DELETE",
+					headers: {
+						"x-auth-token": localStorage.getItem("token"),
+					},
+				}
+			);
 
 			const { message } = await response.json();
 

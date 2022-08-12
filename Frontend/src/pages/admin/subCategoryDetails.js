@@ -4,6 +4,7 @@ import { ADMIN_SUB_CATEGORY } from "../../constants/routes";
 import { SubCategoryForm } from "../../containers";
 import useFetch from "../../hooks/useFetch";
 import { toast } from "react-toastify";
+import Config from "../../config.json";
 
 const SubCategoryDetails = () => {
 	const { id } = useParams();
@@ -19,11 +20,11 @@ const SubCategoryDetails = () => {
 		data: categories,
 		error,
 		isLoading: isLoading1,
-	} = useFetch(`${process.env.REACT_APP_API_REST}/api/category`);
+	} = useFetch(`${Config.REACT_APP_API_REST}/api/category`);
 
 	useEffect(() => {
 		if (id !== "new") {
-			fetch(`${process.env.REACT_APP_API_REST}/api/sub-category/${id}`)
+			fetch(`${Config.REACT_APP_API_REST}/api/sub-category/${id}`)
 				.then((response) => {
 					if (response.ok) {
 						return response.json();
@@ -50,7 +51,7 @@ const SubCategoryDetails = () => {
 
 		try {
 			const response = await fetch(
-				`${process.env.REACT_APP_API_REST}/api/sub-category/${
+				`${Config.REACT_APP_API_REST}/api/sub-category/${
 					id === "new" ? "" : id
 				}`,
 				{

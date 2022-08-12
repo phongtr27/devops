@@ -1,4 +1,5 @@
 import { Form, Loading } from "../../components";
+import Config from "../../config.json";
 
 const CategoryForm = ({
 	id,
@@ -45,7 +46,7 @@ const CategoryForm = ({
 						)}
 						{img && !selectedFile && (
 							<Form.Image
-								src={`${process.env.REACT_APP_API_REST}/public${img}`}
+								src={`${Config.REACT_APP_API_REST}/public${img}`}
 								alt="category image"
 							/>
 						)}
