@@ -4,7 +4,6 @@ import { Form } from "../../components";
 import { UserContext } from "../../context/user";
 import jwt_decode from "jwt-decode";
 import { toast } from "react-toastify";
-import Config from "../../config.json";
 
 const SignUp = () => {
 	const { setUser } = useContext(UserContext);
@@ -17,7 +16,7 @@ const SignUp = () => {
 		try {
 			const data = { name, email, password };
 			const response = await fetch(
-				`${Config.REACT_APP_API_REST}/api/user`,
+				`${process.env.REACT_APP_API_REST}/api/user`,
 				{
 					method: "POST",
 					headers: {

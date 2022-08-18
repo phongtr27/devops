@@ -1,13 +1,12 @@
 import { Card } from "../../components";
 import { SHOP } from "../../constants/routes";
-import Config from "../../config.json";
 
 const ProductCard = ({ product }) => {
 	return (
 		<Card.Item to={`${SHOP}/${product._id}`}>
 			<Card.Wrapper>
 				<Card.Image
-					src={`${Config.REACT_APP_API_PRODUCT}/public${product.options[0].img[0]}`}
+					src={`${process.env.REACT_APP_API_PRODUCT}/public${product.options[0].img[0]}`}
 					alt="product"
 				/>
 				{product.discount > 0 && <Card.Tag>SALE</Card.Tag>}

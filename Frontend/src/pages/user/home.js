@@ -3,29 +3,28 @@ import useFetch from "../../hooks/useFetch";
 import { Fade } from "react-awesome-reveal";
 import { ERROR } from "../../constants/routes";
 import { useNavigate } from "react-router-dom";
-import Config from "../../config.json";
 
 const Home = () => {
 	const navigate = useNavigate();
-	console.log(Config.REACT_APP_API_PRODUCT);
+	console.log(process.env.REACT_APP_API_PRODUCT);
 
 	const {
 		data: categories,
 		error: err1,
 		isLoading: isLoading1,
-	} = useFetch(`${Config.REACT_APP_API_REST}/api/category`);
+	} = useFetch(`${process.env.REACT_APP_API_REST}/api/category`);
 
 	const {
 		data: latestProducts,
 		error: err2,
 		isLoading: isLoading2,
-	} = useFetch(`${Config.REACT_APP_API_PRODUCT}/latest`);
+	} = useFetch(`${process.env.REACT_APP_API_PRODUCT}/latest`);
 
 	const {
 		data: saleProducts,
 		error: err3,
 		isLoading: isLoading3,
-	} = useFetch(`${Config.REACT_APP_API_PRODUCT}/discount`);
+	} = useFetch(`${process.env.REACT_APP_API_PRODUCT}/discount`);
 
 	if (err1 || err2 || err3) {
 		return navigate(`${ERROR}`);

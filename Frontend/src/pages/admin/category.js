@@ -5,7 +5,6 @@ import useFetch from "../../hooks/useFetch";
 import useComponentVisible from "../../hooks/useComponentVisible";
 import { toast } from "react-toastify";
 import { useMemo } from "react";
-import Config from "../../config.json"
 
 let PageSize = 3;
 
@@ -15,7 +14,7 @@ const Category = () => {
 		setData: setCategories,
 		isLoading,
 		error,
-	} = useFetch(`${Config.REACT_APP_API_REST}/api/category`);
+	} = useFetch(`${process.env.REACT_APP_API_REST}/api/category`);
 
 	const {
 		isComponentVisible: showDeleteConfirmation,
@@ -33,7 +32,7 @@ const Category = () => {
 	const handleDelete = async (id) => {
 		try {
 			const response = await fetch(
-				`${Config.REACT_APP_API_REST}/api/category/${id}`,
+				`${process.env.REACT_APP_API_REST}/api/category/${id}`,
 				{
 					method: "DELETE",
 					headers: {

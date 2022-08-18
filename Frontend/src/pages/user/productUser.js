@@ -7,7 +7,6 @@ import { ProductViewContainer } from "../../containers";
 import { Fade } from "react-awesome-reveal";
 import { CartContext } from "../../context/cart";
 import { addToCart } from "../../helpers/addToCart";
-import Config from "../../config.json";
 
 const ProductUser = () => {
 	const { setCart } = useContext(CartContext);
@@ -17,7 +16,7 @@ const ProductUser = () => {
 		data: product,
 		error,
 		isLoading,
-	} = useFetch(`${Config.REACT_APP_API_PRODUCT}/${id}`);
+	} = useFetch(`${process.env.REACT_APP_API_PRODUCT}/${id}`);
 	const [option, setOption] = useState(0);
 	const [size, setSize] = useState(null);
 	const [quantity, setQuantity] = useState(1);

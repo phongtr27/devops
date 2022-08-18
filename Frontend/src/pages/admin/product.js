@@ -5,7 +5,6 @@ import useFetch from "../../hooks/useFetch";
 import useComponentVisible from "../../hooks/useComponentVisible";
 import { toast } from "react-toastify";
 import { useMemo } from "react";
-import Config from "../../config.json"
 
 let PageSize = 7;
 
@@ -15,7 +14,7 @@ const Product = () => {
 		setData: setProducts,
 		isLoading,
 		error,
-	} = useFetch(Config.REACT_APP_API_PRODUCT);
+	} = useFetch(process.env.REACT_APP_API_PRODUCT);
 
 	const [idToDelete, setIdToDelete] = useState(null);
 
@@ -34,7 +33,7 @@ const Product = () => {
 	const handleDelete = async (id) => {
 		try {
 			const response = await fetch(
-				`${Config.REACT_APP_API_PRODUCT}/${id}`,
+				`${process.env.REACT_APP_API_PRODUCT}/${id}`,
 				{
 					method: "DELETE",
 					headers: {

@@ -4,7 +4,6 @@ import { ADMIN_PRODUCT } from "../../constants/routes";
 import { ProductForm } from "../../containers";
 import useFetch from "../../hooks/useFetch";
 import { toast } from "react-toastify";
-import Config from "../../config.json";
 
 const ProductDetails = () => {
 	const { id } = useParams();
@@ -29,13 +28,13 @@ const ProductDetails = () => {
 		data: categories,
 		error: err1,
 		isLoading: isLoading1,
-	} = useFetch(`${Config.REACT_APP_API_REST}/api/category`);
+	} = useFetch(`${process.env.REACT_APP_API_REST}/api/category`);
 
 	const {
 		data: subCategories,
 		error: err2,
 		isLoading: isLoading2,
-	} = useFetch(`${Config.REACT_APP_API_REST}/api/sub-category`);
+	} = useFetch(`${process.env.REACT_APP_API_REST}/api/sub-category`);
 
 	const filteredSubCategories = subCategories?.filter(
 		(item) => item.category === category
@@ -43,7 +42,7 @@ const ProductDetails = () => {
 
 	useEffect(() => {
 		if (id !== "new") {
-			fetch(`${Config.REACT_APP_API_PRODUCT}/${id}`)
+			fetch(`${process.env.REACT_APP_API_PRODUCT}/${id}`)
 				.then((response) => {
 					if (response.ok) {
 						return response.json();
@@ -152,7 +151,7 @@ const ProductDetails = () => {
 
 		try {
 			const response = await fetch(
-				`${Config.REACT_APP_API_PRODUCT}/${id === "new" ? "" : id}`,
+				`${process.env.REACT_APP_API_PRODUCT}/${id === "new" ? "" : id}`,
 				{
 					method: id === "new" ? "POST" : "PUT",
 					body: formData,

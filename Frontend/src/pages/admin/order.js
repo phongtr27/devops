@@ -3,7 +3,6 @@ import useFetch from "../../hooks/useFetch";
 import { OrderTable } from "../../containers";
 import Pagination from "react-js-pagination";
 import { toast } from "react-toastify";
-import Config from "../../config.json";
 
 const PageSize = 7;
 
@@ -12,7 +11,7 @@ const Order = () => {
 		data: orders,
 		error,
 		isLoading,
-	} = useFetch(`${Config.REACT_APP_API_REST}/api/order`);
+	} = useFetch(`${process.env.REACT_APP_API_REST}/api/order`);
 	const [activePage, setActivePage] = useState(1);
 
 	const handlePageChange = (pageNumber) => {

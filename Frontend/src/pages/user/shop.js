@@ -7,7 +7,6 @@ import { filterProduct } from "../../helpers/filterProduct";
 import { ERROR } from "../../constants/routes";
 import { Fade } from "react-awesome-reveal";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import Config from "../../config.json"
 
 const Shop = () => {
 	const navigate = useNavigate();
@@ -26,19 +25,19 @@ const Shop = () => {
 		data: products,
 		error: err1,
 		isLoading: isLoading1,
-	} = useFetch(Config.REACT_APP_API_PRODUCT);
+	} = useFetch(process.env.REACT_APP_API_PRODUCT);
 
 	const {
 		data: categories,
 		error: err2,
 		isLoading: isLoading2,
-	} = useFetch(`${Config.REACT_APP_API_REST}/api/category`);
+	} = useFetch(`${process.env.REACT_APP_API_REST}/api/category`);
 
 	const {
 		data: subCategories,
 		error: err3,
 		isLoading: isLoading3,
-	} = useFetch(`${Config.REACT_APP_API_REST}/api/sub-category`);
+	} = useFetch(`${process.env.REACT_APP_API_REST}/api/sub-category`);
 
 	const [productLimit, setProductLimit] = useState(9);
 
